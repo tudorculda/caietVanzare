@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Ștergeți vânzarea</h1>
+<div mat-dialog-content>
+<p>Această acțiune este ireversibilă, veți șterge vânzarea de {{data.price}} RON din baza de date</p>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Renunță</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="true" cdkFocusInitial>Șterge</button>
+</div>

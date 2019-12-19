@@ -1,0 +1,41 @@
+.mycard{
+    background-image: linear-gradient(to bottom right, bisque, rgb(248, 239, 230));
+}
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    margin-right: 12px;
+}
+.mat-column-select {
+    overflow: initial;
+  }
+
+.cellwidthsmaller{
+    flex-shrink: 3;
+    flex-basis: 50px;
+    flex-grow: 0;
+}
+mat-footer-row {
+    font-weight: bold;
+  }
+
+.filtre{
+    margin-bottom: 1em;
+    mat-card{
+        display:inline-block;
+        margin-right: 1em;
+        border-radius: 2em;
+        background-color: lightgray;
+        padding:0.4em;
+
+    }
+}
+mat-radio-button{
+    margin-right: 1em;
+}
+.exportbutton{
+    float: right;
+    background-color:rgb(194, 247, 194);
+}

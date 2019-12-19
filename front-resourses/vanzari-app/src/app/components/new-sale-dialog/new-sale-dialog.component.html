@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>Introduceți o nouă vânzare!</h1>
+<div mat-dialog-content>
+  <mat-horizontal-stepper linear>
+    <mat-step label="Data">
+      <mat-form-field>
+        <input matInput 
+                [matDatepicker]="datePicker" 
+                placeholder="Alege data ..."
+                (dateChange) = "dateSelect($event)"
+                [value] = "saleDto.data"
+                required>
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker touchUi ></mat-datepicker>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button matStepperNext>Pasul următorul</button>
+    </div>
+    </mat-step>
+
+    <mat-step label="Nume client">
+      <mat-form-field>
+        <input matInput placeholder="Nume..." [(ngModel)]="saleDto.numeClient" required>
+      </mat-form-field>
+      <div class="mydiv">
+        <button mat-raised-button matStepperPrevious>Pasul precedent</button>
+        <button mat-raised-button matStepperNext>Pasul următorul</button>
+      </div>
+    </mat-step>
+    <mat-step label="Produs">
+      <mat-form-field>
+        <input matInput placeholder="Produs..." [(ngModel)]="saleDto.numeProdus">
+      </mat-form-field>
+      <div class="mydiv">
+        <button mat-raised-button matStepperPrevious>Pasul precedent</button>
+        <button mat-raised-button matStepperNext>Pasul următorul</button>
+      </div>
+    </mat-step>
+    <mat-step label="Cod produs">
+      <mat-form-field>
+        <input matInput placeholder="Cod..." [(ngModel)]="saleDto.codProdus">
+      </mat-form-field>
+      <div class="mydiv">
+        <button mat-raised-button matStepperPrevious>Pasul precedent</button>
+        <button mat-raised-button matStepperNext>Pasul următorul</button>
+      </div>
+    </mat-step>
+    <mat-step label="Pret">
+      <mat-form-field>
+        <input matInput placeholder="Preț..." [(ngModel)]="saleDto.pretProdus">
+      </mat-form-field>
+      <div class="mydiv">
+        <button mat-raised-button matStepperPrevious>Pasul precedent</button>
+        <button mat-raised-button matStepperNext>Pasul următorul</button>
+      </div>
+    </mat-step>
+    <mat-step label="Achitat">
+      <mat-slide-toggle [(ngModel)]="saleDto.achitat">Achitat</mat-slide-toggle>
+      <div class="mydiv">
+        <button mat-raised-button matStepperPrevious>Pasul precedent</button>
+        <button mat-raised-button matStepperNext>Pasul următorul</button>
+      </div>
+    </mat-step>
+    <mat-step label="Artizan">
+      <mat-slide-toggle [(ngModel)]="saleDto.artizan">Artizan</mat-slide-toggle>
+      <div class="mydiv">
+        <button mat-raised-button matStepperPrevious>Pasul precedent</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Renunță</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="saleDto" cdkFocusInitial>Salvează</button>
+</div>

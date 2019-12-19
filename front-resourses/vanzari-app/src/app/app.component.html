@@ -1,0 +1,185 @@
+<mat-card>
+    <mat-card-title>Filtrează rezultatele</mat-card-title>
+    <mat-card-content>
+            <mat-form-field>
+                    <mat-label>Alege filtrul</mat-label>
+                    <mat-select [(value)]="selectedFilter" (selectionChange) = "newFilter()" touchUi>
+                      <mat-option *ngFor="let filter of filterLabels" [value]="filter.value">
+                        {{filter.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 1">
+            <input matInput 
+                    [matDatepicker]="pickerStart" 
+                    placeholder="Alege data de start..."
+                    (dateChange) = "dateSelect('start', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart touchUi ></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 2">
+                <input matInput 
+                    [matDatepicker]="pickerEnd" 
+                    placeholder="Alege data de final..."
+                    (dateChange) = "dateSelect('end', $event)">
+                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd touchUi ></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 3">
+                <input matInput placeholder="Nume" 
+                        (keyup)="textFilter('nume', $event)"
+                        >
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 4">
+                <input matInput placeholder="Denumire produs" 
+                        (keyup)="textFilter('produs', $event)"
+                        >
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 5">
+                <input matInput placeholder="Cod produs" 
+                        (keyup)="textFilter('cod', $event)"
+                        >
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 6">
+                <input matInput placeholder="Preț mai mare" type="number" 
+                        (keyup)="textFilter('pretMaiMare', $event)"
+                        >
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selectedFilter == 7">
+                <input matInput placeholder="Preț mai mic" type="number" 
+                        (keyup)="textFilter('pretMaiMic', $event)"
+                        >
+        </mat-form-field>
+
+        <mat-radio-group *ngIf="selectedFilter == 8" 
+                        (change)="booleanFilter('achitat', $event)">
+                <mat-radio-button value="true">Da</mat-radio-button>
+                <mat-radio-button value="false">Nu</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group *ngIf="selectedFilter == 9"
+                    (change)="booleanFilter('artizan', $event)">
+                <mat-radio-button value="true">Da</mat-radio-button>
+                <mat-radio-button value="false">Nu</mat-radio-button>
+        </mat-radio-group>
+          
+        <button mat-raised-button *ngIf="selectedFilter" 
+        [disabled] = "!filterValid"
+        (click)="addFilter()">Aplică</button>
+
+    </mat-card-content>
+    <div class="filtre">
+            <mat-card 
+                    *ngFor="let filtru of filtreMap.values()">
+                    <mat-card-content>
+                        {{filtru.mesaj}} 
+                        <button mat-mini-fab  
+                        color="warn"
+                        (click)="removeFilter(filtru.tip)"
+                        >
+                        <i class="material-icons">
+                                close
+                        </i>                
+                        </button>
+                    </mat-card-content>
+
+            </mat-card>
+        </div>
+</mat-card>
+<mat-card class="mycard">
+    <mat-card-content>
+       
+        <button style="margin-bottom:20px;" 
+            mat-mini-fab  
+            color="accent"
+            matTooltip="Adaugă vânzare nouă"
+            (click)="openDialog()">
+            <i class="material-icons">
+                    add_circle_outline
+            </i>                
+            </button>
+            <button 
+            mat-stroked-button  
+            class="exportbutton"
+            matTooltip="Exportă în fișier"
+            (click)="export2File()">
+            <i class="material-icons">
+                    insert_chart
+            </i>                
+            </button>
+        <mat-table [dataSource]="filteredValues" class="mat-elevation-z8" #myTable>
+          
+            <ng-container matColumnDef="data">
+              <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.data.toLocaleDateString("en-GB")}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef> Total </mat-footer-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="numeClient">
+              <mat-header-cell *matHeaderCellDef> Nume client </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.numeClient}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="numeProdus">
+                <mat-header-cell *matHeaderCellDef> Produs </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.numeProdus}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="codProdus">
+                <mat-header-cell *matHeaderCellDef> Cod produs </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.codProdus}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="pretProdus">
+                <mat-header-cell *matHeaderCellDef> Pret </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.pretProdus}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef> {{getTotalCost()}} RON </mat-footer-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="achitat">
+                <mat-header-cell *matHeaderCellDef> Achitat </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                            {{element.achitat | booleanTranslate}} 
+                            <button mat-button color="accent"
+                            (click)="changeAchitat(element.id)"><i class="material-icons">
+                                edit
+                                    </i></button>   
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>
+                     
+            <ng-container matColumnDef="artizan">
+                <mat-header-cell *matHeaderCellDef> Artizan </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.artizan | booleanTranslate}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+            </ng-container>  
+
+            <ng-container matColumnDef="deleteme">
+                <mat-header-cell *matHeaderCellDef class="cellwidthsmaller"> Ștergeți </mat-header-cell>
+                <mat-cell class="cellwidthsmaller" *matCellDef="let element"> 
+                        <button mat-button color="warn"
+                        (click)="deleteSale(element.id)"><i class="material-icons">
+                                delete_forever
+                                </i></button>                        
+                     </mat-cell>
+                     <mat-footer-cell class="cellwidthsmaller" *matFooterCellDef></mat-footer-cell>
+            </ng-container>        
+          
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+        </mat-table>
+          
+          
+    </mat-card-content>
+</mat-card>
