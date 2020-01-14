@@ -6,7 +6,7 @@ export interface Vanzare {
     codProdus: number;
     pretProdus: number;
     achitat: boolean;
-    artizan: boolean;  
+    artizan: string;  
   }
 
 export interface Filtru{

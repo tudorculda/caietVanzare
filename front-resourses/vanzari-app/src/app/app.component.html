@@ -64,11 +64,11 @@
                 <mat-radio-button value="false">Nu</mat-radio-button>
         </mat-radio-group>
 
-        <mat-radio-group *ngIf="selectedFilter == 9"
-                    (change)="booleanFilter('artizan', $event)">
-                <mat-radio-button value="true">Da</mat-radio-button>
-                <mat-radio-button value="false">Nu</mat-radio-button>
-        </mat-radio-group>
+        <mat-form-field *ngIf="selectedFilter == 9">
+            <input matInput placeholder="Nume lucrător" 
+                        (keyup)="textFilter('artizan', $event)"
+                    >
+        </mat-form-field>
           
         <button mat-raised-button *ngIf="selectedFilter" 
         [disabled] = "!filterValid"
@@ -160,7 +160,7 @@
                      
             <ng-container matColumnDef="artizan">
                 <mat-header-cell *matHeaderCellDef> Artizan </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.artizan | booleanTranslate}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.artizan}} </mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>  
 

@@ -17,7 +17,7 @@ export class NewSaleDialogComponent implements OnInit {
     codProdus: null,
     pretProdus: null,
     achitat: false,
-    artizan: false
+    artizan: ''
   };
 
   constructor(

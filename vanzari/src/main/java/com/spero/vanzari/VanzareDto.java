@@ -12,7 +12,7 @@ public class VanzareDto {
 	public Long codProdus;
 	public Double pretProdus;
 	public Boolean achitat;
-	public Boolean artizan;
+	public String artizan;
 	
 	public VanzareDto() {};
 	
@@ -26,7 +26,7 @@ public class VanzareDto {
 		this.codProdus = codProdus;
 		this.pretProdus = pretProdus;
 		this.achitat = Boolean.parseBoolean(achitat);
-		this.artizan = Boolean.parseBoolean( artizan);
+		this.artizan = artizan;
 	}
 	
 }

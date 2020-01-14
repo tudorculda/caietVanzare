@@ -61,11 +61,17 @@
       </div>
     </mat-step>
     <mat-step label="Artizan">
-      <mat-slide-toggle [(ngModel)]="saleDto.artizan">Artizan</mat-slide-toggle>
+      <mat-form-field>
+        <input matInput placeholder="Nume..." [(ngModel)]="saleDto.artizan">
+      </mat-form-field>
       <div class="mydiv">
         <button mat-raised-button matStepperPrevious>Pasul precedent</button>
       </div>
     </mat-step>
+
+    
+
+
   </mat-horizontal-stepper>
   
 </div>

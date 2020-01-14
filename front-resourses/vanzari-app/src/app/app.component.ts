@@ -189,6 +189,15 @@ selectedFilter: any;
                     }
                   }
     }
+    if( tip == 'artizan'){
+      this.filtru = { tip:FilterType.ARTIZAN,
+                    mesaj:'Artizan=' + event.target.value,
+                    filtreaza: function(dataSource:Vanzare[]){
+                      return dataSource.filter( 
+                        el => el.artizan.toString().toLowerCase().includes(event.target.value.toLowerCase()) );
+                    }
+                  }
+    }
   }
   booleanFilter(tip:string, value:MatRadioChange){
     this.filterValid = true;
@@ -200,15 +209,7 @@ selectedFilter: any;
                       return dataSource.filter( el => el.achitat==checked );
                     }
                   }
-    }
-    if( tip == 'artizan'){
-      this.filtru = { tip:FilterType.ARTIZAN,
-                    mesaj:'Artizan=' + (checked? 'Da': 'Nu'),
-                    filtreaza: function(dataSource:Vanzare[]){
-                      return dataSource.filter( el => el.artizan==checked );
-                    }
-                  }
-    }
+    }   
   }
   clearFiltersValue(){ 
     this.filterValid = false;
