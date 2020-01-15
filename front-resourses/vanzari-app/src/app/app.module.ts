@@ -24,6 +24,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { AchitatDialogComponent } from './components/achitat-dialog/achitat-dialog.component'; 
 import {MatRadioModule} from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatRadioModule} from '@angular/material/radio';
     FormsModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     NewSaleDialogComponent,

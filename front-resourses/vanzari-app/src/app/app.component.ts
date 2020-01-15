@@ -38,6 +38,7 @@ filtreMap: Map<FilterType, Filtru> = new Map();
 filtru: Filtru;
 selectedFilter: any;
 
+
   constructor(private httpService:HttpApiService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar){}
