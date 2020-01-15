@@ -1,0 +1,1 @@
+java -jar vanzari-0.0.1.jar --spring.datasource.url=jdbc:sqlite:caietVanzari.db
