@@ -1,6 +1,8 @@
 <h1 mat-dialog-title>Introduceți o nouă vânzare!</h1>
 <div mat-dialog-content>
-  <mat-horizontal-stepper linear>
+  <mat-horizontal-stepper linear
+  (animationDone)="focusTheInput($event)"
+  (selectionChange)="preparefocusTheInput($event)">
     <mat-step label="Data">
       <form [formGroup]="clientFormGroup">
       <mat-form-field>
@@ -22,7 +24,7 @@
     <mat-step label="Nume client" [stepControl]="clientFormGroup" >
       <form [formGroup]="clientFormGroup">
       <mat-form-field>
-        <input matInput placeholder="Nume..." formControlName="numeClientControl">
+        <input matInput id="input1" placeholder="Nume..." formControlName="numeClientControl">
       </mat-form-field>
       <div class="mydiv">
         <button mat-raised-button matStepperPrevious>Pasul precedent</button>
@@ -34,7 +36,7 @@
     <mat-step label="Produs">
       <form [formGroup]="produsFormGroup">
       <mat-form-field>
-        <input matInput placeholder="Produs..." formControlName="numeProdusControl">
+        <input matInput id="input2" placeholder="Produs..." formControlName="numeProdusControl">
       </mat-form-field>
       <div class="mydiv">
         <button mat-raised-button matStepperPrevious>Pasul precedent</button>
@@ -46,7 +48,7 @@
     <mat-step label="Cod produs">
       <form [formGroup]="codProdusFormGroup">
       <mat-form-field>
-        <input matInput placeholder="Cod..." formControlName="codProdusControl" >
+        <input matInput  id="input3" placeholder="Cod..." formControlName="codProdusControl" >
       </mat-form-field>
       <div class="mydiv">
         <button mat-raised-button matStepperPrevious>Pasul precedent</button>
@@ -58,7 +60,7 @@
     <mat-step label="Pret">
       <form [formGroup]="pretProdusFormGroup">
       <mat-form-field>
-        <input matInput placeholder="Preț..." formControlName="pretProdusControl">
+        <input matInput  id="input4" placeholder="Preț..." formControlName="pretProdusControl">
       </mat-form-field>
       <div class="mydiv">
         <button mat-raised-button matStepperPrevious>Pasul precedent</button>
@@ -79,7 +81,7 @@
 
     <mat-step label="Artizan">
       <mat-form-field>
-        <input matInput placeholder="Nume..." [(ngModel)]="saleDto.artizan">
+        <input matInput  id="input6" placeholder="Nume..." [(ngModel)]="saleDto.artizan">
       </mat-form-field>
       <div class="mydiv">
         <button mat-raised-button matStepperPrevious>Pasul precedent</button>
@@ -96,6 +98,5 @@
   <button mat-raised-button (click)="onNoClick()">Renunță</button>
   <button mat-raised-button color="accent" 
   [mat-dialog-close]="saleDto" 
-  cdkFocusInitial
   [disabled]="!produsFormGroup.valid">Salvează</button>
 </div>

@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { Vanzare } from 'src/app/vanzare';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-new-sale-dialog',
@@ -27,6 +28,8 @@ export class NewSaleDialogComponent implements OnInit {
   codProdusFormGroup: FormGroup;
   pretProdusFormGroup: FormGroup;
   achitatFormGroup: FormGroup;
+
+  selectedStepInput: string ='';
 
   constructor(
     public dialogRef: MatDialogRef<NewSaleDialogComponent>,
@@ -79,6 +82,19 @@ export class NewSaleDialogComponent implements OnInit {
 
   dateSelect(event:MatDatepickerInputEvent<Date>){
     this.saleDto.data = event.value;
+  }
+
+  focusTheInput(event){
+    if(this.selectedStepInput){
+      let targetElem = document.getElementById(this.selectedStepInput);      
+        if (document.body.contains(targetElem)) {
+          targetElem.focus();
+        } 
+     }
+  }
+  
+  preparefocusTheInput(event:StepperSelectionEvent){
+    this.selectedStepInput = 'input' + event.selectedIndex;
   }
 
 }
