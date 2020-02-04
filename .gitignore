@@ -32,3 +32,7 @@ build/
 
 /front-resourses/vanzari-app/dist
 /front-resourses/vanzari-app/node_modules
+
+vanzari/src/main/resources/static/
+
+vanzari/caietVanzari.db
