@@ -17,11 +17,14 @@ mat-form-field {
     flex-basis: 50px;
     flex-grow: 0;
 }
-mat-footer-row, mat-header-row {
+ mat-header-row {
     font-weight: bold;
     background-image: linear-gradient(to bottom, rgb(223, 223, 223), rgb(248, 239, 230));
+  }
 
-    //background-color: rgb(223, 223, 223);
+  mat-footer-row{
+    font-weight: bold;
+    background-image: linear-gradient(to bottom, rgb(248, 239, 230), rgb(223, 223, 223));
   }
 
 
