@@ -51,7 +51,11 @@ selectedFilter: any;
 
   private getAllSales() {
     this.httpService.getVanzari().subscribe((data: Vanzare[]) => {
-      data.forEach(el => el.data = new Date(el.data));
+      data.forEach(el => {
+        let d =new Date(el.data);
+        d.setHours(0,0); 
+        el.data = d;
+      });
       this.dataSource = data; 
       this.filterTheValues();      
     });
